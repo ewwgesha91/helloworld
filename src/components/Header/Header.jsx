@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Header() {
+export default function Header({onCardAdd}) {
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen((prevState) => !prevState);
@@ -20,7 +20,7 @@ export default function Header() {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
+            <button onClick={onCardAdd} className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
             <a
