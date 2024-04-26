@@ -21,7 +21,7 @@ export default function Header({onCardAdd}) {
           </div>
           <nav className="header__nav">
             <button onClick={onCardAdd} className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+              <a href="#">Создать новую задачу</a>
             </button>
             <a
               onClick={togglePopup}
