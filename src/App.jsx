@@ -7,6 +7,7 @@ import Main from "./components/Main/Main";
 import PopBrowse from "./components/Popups/PopBrowse";
 import PopExit from "./components/Popups/PopExit";
 import PopNewCard from "./components/Popups/PopNewCard";
+import { GlobalStyle } from "./components/Global/Global.styled";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
   }
   return (
     <>
+    <GlobalStyle />
       <div className="wrapper">
         <PopExit />
         <PopNewCard />
