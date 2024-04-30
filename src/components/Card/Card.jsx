@@ -1,24 +1,27 @@
+import { topicHeader } from "../../lib/topic";
+import * as S from "./Card.styled";
+
 const Card = ({ topic, title, date }) => {
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className="card__theme _orange">
-            <p className="_orange">{topic}</p>
-          </div>
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </a>
-        </div>
-        <div className="card__content">
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardGroup>
+          <S.CardTopic $topicColor={topicHeader[topic]}>
+            <S.CardTopicText>{topic}</S.CardTopicText>
+            <a href="#popBrowse" target="_self">
+              <S.CardBtn>
+                <S.CardBtnDiv></S.CardBtnDiv>
+                <S.CardBtnDiv></S.CardBtnDiv>
+                <S.CardBtnDiv></S.CardBtnDiv>
+              </S.CardBtn>
+            </a>
+          </S.CardTopic>
+        </S.CardGroup>
+        <S.CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{title}</h3>
+            <S.CardTitle>{title}</S.CardTitle>
           </a>
-          <div className="card__date">
+          <S.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -47,11 +50,11 @@ const Card = ({ topic, title, date }) => {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <S.CardDateP>{date}</S.CardDateP>
+          </S.CardDate>
+        </S.CardContent>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 };
 

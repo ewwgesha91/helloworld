@@ -1,5 +1,7 @@
 import { useState } from "react";
 import * as S from "./Header.styled";
+import { Container } from "../../styled/Common.styled";
+
 export default function Header({ onCardAdd }) {
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
@@ -7,8 +9,8 @@ export default function Header({ onCardAdd }) {
   };
   return (
     <S.Header>
-      <div className="container">
-        <S.HeaderBlock>
+      <Container>
+      <S.HeaderBlock>
           <S.HeaderLogo>
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
@@ -46,7 +48,7 @@ export default function Header({ onCardAdd }) {
             )}
           </S.HeaderNav>
         </S.HeaderBlock>
-      </div>
+      </Container>
     </S.Header>
   );
 }
