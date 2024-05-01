@@ -8,6 +8,7 @@ const Card = ({ topic, title, date }) => {
         <S.CardGroup>
           <S.CardTopic $topicColor={topicHeader[topic]}>
             <S.CardTopicText>{topic}</S.CardTopicText>
+            </S.CardTopic>
             <a href="#popBrowse" target="_self">
               <S.CardBtn>
                 <S.CardBtnDiv></S.CardBtnDiv>
@@ -15,7 +16,6 @@ const Card = ({ topic, title, date }) => {
                 <S.CardBtnDiv></S.CardBtnDiv>
               </S.CardBtn>
             </a>
-          </S.CardTopic>
         </S.CardGroup>
         <S.CardContent>
           <a href="" target="_blank">
