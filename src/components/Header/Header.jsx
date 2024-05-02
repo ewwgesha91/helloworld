@@ -1,35 +1,35 @@
 import { useState } from "react";
+import * as S from "./Header.styled";
+import { Container } from "../../styled/Common.styled";
 
-export default function Header({onCardAdd}) {
+export default function Header({ onCardAdd }) {
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen((prevState) => !prevState);
   };
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <S.Header>
+      <Container>
+      <S.HeaderBlock>
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </S.HeaderLogo>
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button onClick={onCardAdd} className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#">Создать новую задачу</a>
-            </button>
-            <a
-              onClick={togglePopup}
-              href="#user-set-target"
-              className="header__user _hover02"
-            >
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew onClick={onCardAdd} id="btnMainNew">
+              <S.HeaderBtnMainNewLink href="#">
+                Создать новую задачу
+              </S.HeaderBtnMainNewLink>
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
               Ivan Ivanov
-            </a>
+            </S.HeaderUser>
             {isOpen && (
               <div
                 className="header__pop-user-set pop-user-set"
@@ -46,9 +46,9 @@ export default function Header({onCardAdd}) {
                 </button>
               </div>
             )}
-          </nav>
-        </div>
-      </div>
-    </header>
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </Container>
+    </S.Header>
   );
 }
