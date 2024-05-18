@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { topicHeader } from "../../lib/topic";
 import * as S from "./Card.styled";
+import { paths } from "../../lib/paths";
 
 const Card = ({ topic, title, date }) => {
   return (
@@ -8,19 +10,19 @@ const Card = ({ topic, title, date }) => {
         <S.CardGroup>
           <S.CardTopic $topicColor={topicHeader[topic]}>
             <S.CardTopicText>{topic}</S.CardTopicText>
-            </S.CardTopic>
-            <a href="#popBrowse" target="_self">
-              <S.CardBtn>
-                <S.CardBtnDiv></S.CardBtnDiv>
-                <S.CardBtnDiv></S.CardBtnDiv>
-                <S.CardBtnDiv></S.CardBtnDiv>
-              </S.CardBtn>
-            </a>
+          </S.CardTopic>
+          <a href="#popBrowse" target="_self">
+            <S.CardBtn>
+              <S.CardBtnDiv></S.CardBtnDiv>
+              <S.CardBtnDiv></S.CardBtnDiv>
+              <S.CardBtnDiv></S.CardBtnDiv>
+            </S.CardBtn>
+          </a>
         </S.CardGroup>
         <S.CardContent>
-          <a href="" target="_blank">
+          <Link to={paths.CARD}>
             <S.CardTitle>{title}</S.CardTitle>
-          </a>
+          </Link>
           <S.CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
