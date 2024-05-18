@@ -9,28 +9,26 @@ import ExitPage from "./pages/ExitPage/ExitPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegPage from "./pages/RegistrationPage/RegistrationPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import { cardList } from "./data";
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(true);
-  const [cards, setCards] = useState(cardList);
 
   return (
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
         <Route
           path={paths.MAIN}
-          element={<MainPage cards={cards} setCards={setCards} />}
+          element={<MainPage />}
         >
           <Route path={paths.CARD} element={<CardPage />} />
           <Route
             path={paths.USER_EXIT}
-            element={<ExitPage setIsAuth={setIsAuth} />}
+            element={<ExitPage setLogin={setIsAuth} />}
           />
         </Route>
       </Route>
 
-      <Route path={paths.LOGIN} element={<LoginPage login={setIsAuth} />} />
+      <Route path={paths.LOGIN} element={<LoginPage setIsAuth={setIsAuth} />} />
       <Route path={paths.REGISTER} element={<RegPage />} />
       <Route path={paths.NOTFOUND} element={<NotFoundPage />} />
     </Routes>
