@@ -1,13 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { paths } from "../../lib/paths";
 
-const PopExit = ({ setIsAuth }) => {
-  const navigate = useNavigate();
-
-  const logOut = () => {
-    setIsAuth(false);
-    navigate(paths.LOGIN);
-  };
+const PopExit = ({ logOut }) => {
 
   return (
     <div className="pop-exit" id="popExit">
