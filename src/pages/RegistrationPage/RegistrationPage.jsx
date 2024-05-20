@@ -1,29 +1,28 @@
 import { Wrapper } from "../../styled/Common.styled";
-import * as S from "../LoginPage/LoginPage.styled";
+import * as S from "./RegistrationPage.styled";
 import { Link } from "react-router-dom";
 import { paths } from "../../lib/paths";
 export default function RegPage() {
   return (
     <Wrapper>
-      <S.ContainerSignin>
-        <S.Modal>
-          <S.ModalBlock>
-            <S.ModalTitle>Регистрация</S.ModalTitle>
-            <S.ModalFormLogin>
-              <S.ModalInput type="text" placeholder="Имя"></S.ModalInput>
-              <S.ModalInput type="mail" placeholder="Эл.почта"></S.ModalInput>
-              <S.ModalInput type="password" placeholder="Пароль"></S.ModalInput>
-              <Link to={paths.MAIN}>
-                <S.ModalBtn>Зарегистрироваться</S.ModalBtn>
-              </Link>
-              <S.ModalFormGroup>
-                <p>Уже есть аккаунт?</p>
-                <Link to={paths.LOGIN}>Войдите здесь</Link>
-              </S.ModalFormGroup>
-            </S.ModalFormLogin>
-          </S.ModalBlock>
-        </S.Modal>
-      </S.ContainerSignin>
+          <S.Form>
+      <S.FormContainer>
+        <S.FormHeader>Регистрация</S.FormHeader>
+        
+        <S.FormInput type="text" placeholder="Имя" />
+        <S.FormInput type="mail" placeholder="Эл. почта" />
+        <S.FormInput type="password" placeholder="Пароль" />
+
+        <Link to={paths.MAIN}>
+          <S.FormButton>Зарегистрироваться</S.FormButton>
+        </Link>
+        <S.FormFooter>
+          Уже есть аккаунт? <Link to={paths.LOGIN}>Войдите здесь</Link>
+        </S.FormFooter>
+      </S.FormContainer>
+    </S.Form>
+
+
     </Wrapper>
   );
 }

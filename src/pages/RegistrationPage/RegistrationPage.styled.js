@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const ContainerSignin = styled.div`
-  display: block;
-  width: 100vw;
-  min-height: 100vh;
-  margin: 0 auto;  
-`;
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #eaeef6;
+  `;
+  
 export const Form = styled.form`
   position: absolute;
   left: 536px;

@@ -15,6 +15,7 @@ const Column = ({ title, cardList }) => {
             topic={card.topic}
             title={card.title}
             date={card.date}
+            id={card.id}
           />
         ))}
       </Cards>
