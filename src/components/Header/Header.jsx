@@ -1,6 +1,8 @@
 import { useState } from "react";
 import * as S from "./Header.styled";
 import { Container } from "../../styled/Common.styled";
+import { Link } from "react-router-dom";
+import { paths } from "../../lib/paths";
 
 export default function Header({ onCardAdd }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,11 +12,11 @@ export default function Header({ onCardAdd }) {
   return (
     <S.Header>
       <Container>
-      <S.HeaderBlock>
+        <S.HeaderBlock>
           <S.HeaderLogo>
-            <a href="" target="_self">
+            <Link to={paths.MAIN} target="_self">
               <img src="images/logo.png" alt="logo" />
-            </a>
+            </Link>
           </S.HeaderLogo>
           <S.HeaderLogo>
             <a href="" target="_self">
@@ -41,9 +43,11 @@ export default function Header({ onCardAdd }) {
                   <p>Темная тема</p>
                   <input type="checkbox" className="checkbox" name="checkbox" />
                 </div>
-                <button type="button" className="_hover03">
-                  <a href="#popExit">Выйти</a>
-                </button>
+                <Link to={paths.USER_EXIT}>
+                  <button type="button" className="_hover03">
+                    Выйти
+                  </button>
+                </Link>
               </div>
             )}
           </S.HeaderNav>
