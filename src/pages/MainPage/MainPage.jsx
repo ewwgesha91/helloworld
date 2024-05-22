@@ -5,7 +5,6 @@ import Main from "../../components/Main/Main";
 /* import PopBrowse from "../../components/Popups/PopBrowse";
 import PopExit from "../../components/Popups/PopExit"; */
 import PopNewCard from "../../components/Popups/PopNewCard";
-import { GlobalStyle } from "../../components/Global/Global.styled";
 import { Wrapper } from "../../styled/Common.styled";
 import { Outlet } from "react-router-dom";
 
@@ -32,7 +31,6 @@ export default function MainPage() {
 
       return (
         <>
-          <GlobalStyle />
           <Wrapper>
 {/*             <PopExit /> */}
             <PopNewCard />

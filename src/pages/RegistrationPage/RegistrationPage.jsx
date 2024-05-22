@@ -1,10 +1,9 @@
-import { Wrapper } from "../../styled/Common.styled";
 import * as S from "./RegistrationPage.styled";
 import { Link } from "react-router-dom";
 import { paths } from "../../lib/paths";
 export default function RegPage() {
   return (
-    <Wrapper>
+    <S.Wrapper>
           <S.Form>
       <S.FormContainer>
         <S.FormHeader>Регистрация</S.FormHeader>
@@ -23,6 +22,6 @@ export default function RegPage() {
     </S.Form>
 
 
-    </Wrapper>
+    </S.Wrapper>
   );
 }

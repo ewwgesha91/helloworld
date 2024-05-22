@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  background-color: #eaeef6;
+   max-width: 100%;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: rgb(234, 238, 246);;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   `;
   
 export const Form = styled.form`
   position: absolute;
-  left: 536px;
-  top: 277px;
+  /* left: 536px;
+  top: 277px; */
   display: flex;
   padding: 50px 60px;
   box-sizing: border-box;
@@ -69,6 +72,7 @@ export const FormFooter = styled.div`
   font-size: 14px;
   font-weight: 400;
   text-align: center;
+  line-height: 150%;
 `;
 
 export const FooterText = styled.p`

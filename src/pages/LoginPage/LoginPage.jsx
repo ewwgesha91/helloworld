@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../lib/paths";
 import * as S from "../RegistrationPage/RegistrationPage.styled";
-import { Wrapper } from "../../styled/Common.styled";
 export default function LoginPage({ setIsAuth }) {
   const navigate = useNavigate();
 
@@ -11,7 +10,7 @@ export default function LoginPage({ setIsAuth }) {
   };
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       <S.Form>
         <S.FormContainer>
           <S.FormHeader>Вход</S.FormHeader>
@@ -26,6 +25,6 @@ export default function LoginPage({ setIsAuth }) {
           </S.FormFooter>
         </S.FormContainer>
       </S.Form>
-    </Wrapper>
+    </S.Wrapper>
   );
 }
