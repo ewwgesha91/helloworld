@@ -16,13 +16,13 @@ export async function getCadrs({ token }) {
     return data;
   }
 export async function loginUser({ login, password }) {
-    const response = await fetch(userUrl + "/login", {
+    return fetch(userUrl + "/login", {
       method: "POST",
       body: JSON.stringify({
         login,
         password,
       }),
-    }).then(() => {
+    }).then((response) => {
       if (response.status === 400) {
         throw new Error("Неправильный логин или пароль");
       }

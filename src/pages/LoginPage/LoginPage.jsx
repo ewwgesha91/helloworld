@@ -1,12 +1,37 @@
 import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../lib/paths";
 import * as S from "../RegistrationPage/RegistrationPage.styled";
-export default function LoginPage({ setIsAuth }) {
+import { loginUser } from "../../api";
+import { useState } from "react";
+export default function LoginPage({ setUser }) {
   const navigate = useNavigate();
 
-  const logHandler = () => {
-    setIsAuth(true);
-    navigate(paths.MAIN);
+ const loginForm = {
+    login: "",
+    password: "",
+  };
+
+  const [loginData, setLoginData] = useState(loginForm);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
+    await loginUser(loginData)
+    .then((data) => {
+      console.log(data);
+      setUser(data.user);
+    }).then(() => {
+      navigate(paths.MAIN);
+    })
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target; // Извлекаем имя поля и его значение
+  
+    setLoginData({
+      ...loginData, // Копируем текущие данные из состояния
+      [name]: value, // Обновляем нужное поле
+    });
   };
 
   return (
@@ -14,9 +39,9 @@ export default function LoginPage({ setIsAuth }) {
       <S.Form>
         <S.FormContainer>
           <S.FormHeader>Вход</S.FormHeader>
-          <S.FormInput type="mail" placeholder="Эл. почта" />
-          <S.FormInput type="password" placeholder="Пароль" />
-          <S.FormButton type="button" onClick={logHandler}>
+          <S.FormInput type="text" value={loginData.login} onChange={handleInputChange} name="login" placeholder="Эл. почта" />
+          <S.FormInput type="password" value={loginData.password} onChange={handleInputChange} name="password" placeholder="Пароль" />
+          <S.FormButton type="button" onClick={handleLogin}>
             Войти
           </S.FormButton>
           <S.FormFooter>

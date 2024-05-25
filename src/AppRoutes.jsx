@@ -10,18 +10,18 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useState } from "react";
 
  const AppRoutes = () => {
-  const [isAuth, setIsAuth] = useState(true);
+  const [user, setUser] = useState(null);
 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
+      <Route element={<PrivateRoute user={user} />}>
         <Route path={paths.MAIN} element={<MainPage />}>
           <Route path={paths.CARD} element={<CardPage />} />
-          <Route path={paths.USER_EXIT} element={<ExitPage setLogin={setIsAuth} />} />
+          <Route path={paths.USER_EXIT} element={<ExitPage setUser={setUser} />} />
         </Route>
       </Route>
 
-      <Route path={paths.LOGIN} element={<LoginPage setIsAuth={setIsAuth} />} />
+      <Route path={paths.LOGIN} element={<LoginPage setUser={setUser} />} />
       <Route path={paths.REGISTER} element={<RegPage />} />
       <Route path={paths.NOTFOUND} element={<NotFoundPage />} />
     </Routes>
