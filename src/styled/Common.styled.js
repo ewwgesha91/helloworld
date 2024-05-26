@@ -20,3 +20,8 @@ export const Wrapper = styled.div`
   overflow: hidden;
   background-color: #F1F1F1;
 `;
+
+export const Loader = styled.p`
+    text-align: center;
+    padding-top: 50px;
+`;

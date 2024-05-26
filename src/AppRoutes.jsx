@@ -15,14 +15,14 @@ import { useState } from "react";
   return (
     <Routes>
       <Route element={<PrivateRoute user={user} />}>
-        <Route path={paths.MAIN} element={<MainPage />}>
+        <Route path={paths.MAIN} element={<MainPage user={user} />}>
           <Route path={paths.CARD} element={<CardPage />} />
           <Route path={paths.USER_EXIT} element={<ExitPage setUser={setUser} />} />
         </Route>
       </Route>
 
       <Route path={paths.LOGIN} element={<LoginPage setUser={setUser} />} />
-      <Route path={paths.REGISTER} element={<RegPage />} />
+      <Route path={paths.REGISTER} element={<RegPage setUser={setUser}/>} />
       <Route path={paths.NOTFOUND} element={<NotFoundPage />} />
     </Routes>
   );

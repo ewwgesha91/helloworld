@@ -6,31 +6,45 @@ import { useState } from "react";
 export default function LoginPage({ setUser }) {
   const navigate = useNavigate();
 
- const loginForm = {
+  const loginForm = {
     login: "",
     password: "",
   };
 
   const [loginData, setLoginData] = useState(loginForm);
 
+  const [addLoginError, setAddLoginError] = useState(null);
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    
-    await loginUser(loginData)
-    .then((data) => {
-      console.log(data);
-      setUser(data.user);
-    }).then(() => {
-      navigate(paths.MAIN);
-    })
-  }
+    if (!loginData.login || loginData.login.trim().length === 0) {
+      setAddLoginError("Не введён логин.");
+      return;
+    }
+
+    if (!loginData.password || loginData.password.trim().length === 0) {
+      setAddLoginError("Не введён пароль.");
+      return;
+    }
+
+    try {
+      await loginUser(loginData).then((data) => {
+        console.log(data);
+        setUser(data.user);
+        navigate(paths.MAIN);
+      });
+    } catch (error) {
+      console.log(error);
+      setAddLoginError(error.message);
+    }
+  };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target; // Извлекаем имя поля и его значение
-  
+    const { name, value } = e.target;
+
     setLoginData({
-      ...loginData, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
+      ...loginData,
+      [name]: value,
     });
   };
 
@@ -39,8 +53,21 @@ export default function LoginPage({ setUser }) {
       <S.Form>
         <S.FormContainer>
           <S.FormHeader>Вход</S.FormHeader>
-          <S.FormInput type="text" value={loginData.login} onChange={handleInputChange} name="login" placeholder="Эл. почта" />
-          <S.FormInput type="password" value={loginData.password} onChange={handleInputChange} name="password" placeholder="Пароль" />
+          <S.FormInput
+            type="text"
+            value={loginData.login}
+            onChange={handleInputChange}
+            name="login"
+            placeholder="Эл. почта"
+          />
+          <S.FormInput
+            type="password"
+            value={loginData.password}
+            onChange={handleInputChange}
+            name="password"
+            placeholder="Пароль"
+          />
+          {addLoginError && <p style={{color: 'red'}}>{addLoginError}</p>}
           <S.FormButton type="button" onClick={handleLogin}>
             Войти
           </S.FormButton>

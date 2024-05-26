@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { paths } from "../../lib/paths";
 
-const PopExit = ({ logOut }) => {
+const PopExit = ({ setUser }) => {
 
   return (
     <div className="pop-exit" id="popExit">
@@ -13,7 +13,7 @@ const PopExit = ({ logOut }) => {
           <form className="pop-exit__form" id="formExit" action="#">
             <div className="pop-exit__form-group">
               <button className="pop-exit__exit-yes _hover01" id="exitYes">
-                <a onClick={logOut}>Да, выйти</a>
+                <a onClick={setUser}>Да, выйти</a>
               </button>
               <button className="pop-exit__exit-no _hover03" id="exitNo">
                 <Link to={paths.MAIN}>Нет, остаться</Link>
