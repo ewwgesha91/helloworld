@@ -11,11 +11,11 @@ const Column = ({ title, cardList }) => {
       <Cards>
         {cardList.map((card) => (
           <Card
-            key={card.id}
+            key={card._id}
             topic={card.topic}
             title={card.title}
             date={card.date}
-            id={card.id}
+            id={card._id}
           />
         ))}
       </Cards>
