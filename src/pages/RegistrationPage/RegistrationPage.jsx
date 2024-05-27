@@ -7,8 +7,8 @@ export default function RegPage({ setUser }) {
   const navigate = useNavigate();
 
   const regForm = {
-    name: "",
     login: "",
+    name: "",
     password: "",
   };
 
