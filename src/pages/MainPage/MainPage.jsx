@@ -8,8 +8,12 @@ import PopNewCard from "../../components/Popups/PopNewCard";
 import { Loader, Wrapper } from "../../styled/Common.styled";
 import { Outlet } from "react-router-dom";
 import { getCadrs } from "../../api";
+import { useTasks } from "../../hooks/useTasks";
+import { useUser } from "../../hooks/useUser";
 
-export default function MainPage({user}) {
+export default function MainPage() {
+  const {user} = useUser();
+  const {setTasks} = useTasks();
     const [cards, setCards] = useState(cardList);
     const [isLoading, setIsLoading] = useState(true);
 /* const [error, setError] = useState(null);
@@ -20,7 +24,7 @@ export default function MainPage({user}) {
         getCadrs({token: user.token})
         .then((data) => {
           console.log(data);
-          setCards(data.tasks);
+          setTasks(data.tasks);
         })
       } catch (error) {
           console.error(error);
@@ -28,7 +32,7 @@ export default function MainPage({user}) {
         } finally {
           setIsLoading(false);
         }
-      }, [setCards, user ]);
+      }, [setTasks, user ]);
     
       function onCardAdd() {
         const newCard = {

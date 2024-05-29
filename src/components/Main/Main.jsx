@@ -1,8 +1,11 @@
 import { statusList } from "../../data";
+import { useTasks } from "../../hooks/useTasks";
 import { Container } from "../../styled/Common.styled";
 import Column from "../Column/Column";
 import * as S from "./Main.styled"
-export default function Main({cards}) {
+
+export default function Main() {
+  const {tasks} = useTasks();
   return (
     <S.Main>
       <Container>
@@ -12,7 +15,7 @@ export default function Main({cards}) {
               <Column
                 key={status}
                 title={status}
-                cardList={cards.filter((card) => card.status === status)}
+                cardList={tasks.filter((card) => card.status === status)}
               />
             ))}
           </S.MainContent>
