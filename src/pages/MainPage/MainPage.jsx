@@ -2,9 +2,7 @@ import { cardList, statusList } from "../../data";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
-/* import PopBrowse from "../../components/Popups/PopBrowse";
-import PopExit from "../../components/Popups/PopExit"; */
-import PopNewCard from "../../components/Popups/PopNewCard";
+/* import PopNewCard from "../../components/Popups/PopNewCard"; */
 import { Loader, Wrapper } from "../../styled/Common.styled";
 import { Outlet } from "react-router-dom";
 import { getCadrs } from "../../api";
@@ -48,9 +46,7 @@ export default function MainPage() {
       return (
         <>
           <Wrapper>
-{/*             <PopExit /> */}
-            <PopNewCard />
-{/*             <PopBrowse /> */}
+{/*             <PopNewCard /> */}
             <Header onCardAdd={onCardAdd} />
             {isLoading ? <Loader>Данные загружаются...</Loader> : <Main cards={cards}  />}
             <Outlet />

@@ -1,28 +1,22 @@
 import { Link } from "react-router-dom";
 import { paths } from "../../lib/paths";
-
+import * as S from "./PopUp.styled"
 const PopExit = ({ setUser }) => {
 
   return (
-    <div className="pop-exit" id="popExit">
-      <div className="pop-exit__container">
-        <div className="pop-exit__block">
-          <div className="pop-exit__ttl">
-            <h2>Выйти из аккаунта?</h2>
-          </div>
+    <S.PopExit>
+      <S.Container>
+        <S.PopExitBlock>
+          <S.PopExitTitle><h2>Выйти из аккаунта?</h2></S.PopExitTitle>
           <form className="pop-exit__form" id="formExit" action="#">
-            <div className="pop-exit__form-group">
-              <button className="pop-exit__exit-yes _hover01" id="exitYes">
-                <a onClick={setUser}>Да, выйти</a>
-              </button>
-              <button className="pop-exit__exit-no _hover03" id="exitNo">
-                <Link to={paths.MAIN}>Нет, остаться</Link>
-              </button>
-            </div>
+            <S.PopExitFormGroup>
+              <S.PopExitYes id="exitYes"><a onClick={setUser}>Да, выйти</a></S.PopExitYes>
+              <S.PopExitNo id="exitNo"><Link to={paths.MAIN}>Нет, остаться</Link></S.PopExitNo>
+            </S.PopExitFormGroup>
           </form>
-        </div>
-      </div>
-    </div>
+        </S.PopExitBlock>
+      </S.Container>
+    </S.PopExit>
   );
 };
 

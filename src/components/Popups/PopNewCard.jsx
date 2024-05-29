@@ -5,6 +5,8 @@ import Calendar from "../Calendar/Calendar";
 import { useNavigate } from "react-router-dom";
 import { paths } from "../../lib/paths";
 import { useUser } from "../../hooks/useUser";
+import * as S from "./PopUp.styled";
+import { getTopicColor } from "../../lib/topic";
 
 export default function PopNewCard() {
   const { getTasks } = useTasks();
@@ -25,6 +27,10 @@ export default function PopNewCard() {
     const { name, value } = event.target;
     setNewTask({ ...newTask, [name]: value });
   };
+
+  const handleTopicChange = (topic) => {
+    setNewTask({ ...newTask, topic });
+  }
 
   const handleNewCardAdd = async (e) => {
     try {
@@ -66,67 +72,62 @@ export default function PopNewCard() {
   };
 
   return (
-    <div className="pop-new-card" id="popNewCard">
-      <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
-          <div className="pop-new-card__content">
-            <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
-              &#10006;
-            </a>
-            <div className="pop-new-card__wrap">
-              <form
-                className="pop-new-card__form form-new"
-                id="formNewCard"
-                action="#"
-              >
-                <div className="form-new__block">
-                  <label htmlFor="formTitle" className="subttl">
-                    Название задачи
-                  </label>
-                  <input
-                    className="form-new__input"
+    <S.PopNewCard id="popNewCard">
+      <S.Container>
+        <S.Block>
+          <S.Content>
+            <S.PopNewCardTitle>Создание задачи</S.PopNewCardTitle>
+            <S.PopNewCardClose>&#10006;</S.PopNewCardClose>
+            <S.Wrap>
+              <S.Form id="formNewCard" action="#">
+                <S.FormBlock>
+                  <S.SubTtl htmlFor="formTitle">Название задачи</S.SubTtl>
+                  <S.FormNewInput
                     type="text"
                     name="name"
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
+                    value={newTask.title}
+                    onChange={handleInputChange}
                   />
-                </div>
-                <div className="form-new__block">
-                  <label htmlFor="textArea" className="subttl">
-                    Описание задачи
-                  </label>
-                  <textarea
-                    className="form-new__area"
-                    name="text"
+                </S.FormBlock>
+                <S.FormBlock>
+                  <S.SubTtl htmlFor="textArea">Описание задачи</S.SubTtl>
+                  <S.FormNewArea
+                    type="textarea"
+                    name="description"
                     id="textArea"
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                    value={newTask.description}
+                    onChange={handleInputChange}
+                  />
+                </S.FormBlock>
+              </S.Form>
               <Calendar />
-            </div>
-            <div className="pop-new-card__categories categories">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-                <div className="categories__theme _green">
-                  <p className="_green">Research</p>
-                </div>
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div>
-              </div>
-            </div>
-            <button className="form-new__create _hover01" id="btnCreate">
-              Создать задачу
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+            </S.Wrap>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <S.Categories>
+            <S.CategoriesTtl>Категория</S.CategoriesTtl>
+              <S.CategoriesThemes>
+                {["Web Design", "Research", "Copywriting"].map((topic) => (
+                  <S.CategoriesTheme
+                    key={topic}
+                    $isActive={newTask.topic === topic}
+                    $topicColor={getTopicColor(topic)}
+                    onClick={() => handleTopicChange(topic)}
+                  >
+                    <S.CategoriesThemeP $topicColor={getTopicColor(topic)}>
+                      {topic}
+                    </S.CategoriesThemeP>
+                  </S.CategoriesTheme>
+                ))}
+              </S.CategoriesThemes>
+            </S.Categories>
+            <S.FormNewCreate onClick={handleNewCardAdd} type="submit" id="btnCreate">Создать задачу</S.FormNewCreate>
+          </S.Content>
+        </S.Block>
+      </S.Container>
+    </S.PopNewCard>
   );
 }

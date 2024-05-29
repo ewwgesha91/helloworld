@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { topicHeader } from "../../lib/topic";
+import { getTopicColor } from "../../lib/topic";
 import * as S from "./Card.styled";
 
 const Card = ({ topic, title, date, id }) => {
+  const topicColor = getTopicColor(topic);
+
   return (
     <S.CardsItem>
       <S.CardsCard>
         <S.CardGroup>
-          <S.CardTopic $topicColor={topicHeader[topic]}>
+          <S.CardTopic $topicColor={topicColor}>
             <S.CardTopicText>{topic}</S.CardTopicText>
           </S.CardTopic>
         <Link to={`/card/${id}`}>

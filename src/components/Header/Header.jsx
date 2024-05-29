@@ -33,10 +33,7 @@ export default function Header({ onCardAdd }) {
               Ivan Ivanov
             </S.HeaderUser>
             {isOpen && (
-              <div
-                className="header__pop-user-set pop-user-set"
-                id="user-set-target"
-              >
+              <S.HeaderPopUserSet id="user-set-target">
                 <p className="pop-user-set__name">Ivan Ivanov</p>
                 <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
                 <div className="pop-user-set__theme">
@@ -48,7 +45,7 @@ export default function Header({ onCardAdd }) {
                     Выйти
                   </button>
                 </Link>
-              </div>
+              </S.HeaderPopUserSet>
             )}
           </S.HeaderNav>
         </S.HeaderBlock>
