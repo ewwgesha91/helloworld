@@ -2,7 +2,7 @@ import { useState } from "react";
 import { addNewCard } from "../../api";
 import { useTasks } from "../../hooks/useTasks";
 import Calendar from "../Calendar/Calendar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../lib/paths";
 import { useUser } from "../../hooks/useUser";
 import * as S from "./PopUp.styled";
@@ -18,7 +18,7 @@ export default function PopNewCard() {
     title: "",
     topic: "",
     description: "",
-    date: "",
+    date: null,
   };
 
   const [newTask, setNewTask] = useState(newTaskForm);
@@ -67,6 +67,7 @@ export default function PopNewCard() {
         navigate(paths.MAIN);
       });
     } catch (error) {
+      console.log(error);
       setError(error.message);
     }
   };
@@ -77,14 +78,16 @@ export default function PopNewCard() {
         <S.Block>
           <S.Content>
             <S.PopNewCardTitle>Создание задачи</S.PopNewCardTitle>
+            <Link to={paths.MAIN}>
             <S.PopNewCardClose>&#10006;</S.PopNewCardClose>
+            </Link>
             <S.Wrap>
-              <S.Form id="formNewCard" action="#">
+              <S.Form id="formNewCard" onSubmit={handleNewCardAdd}>
                 <S.FormBlock>
                   <S.SubTtl htmlFor="formTitle">Название задачи</S.SubTtl>
                   <S.FormNewInput
                     type="text"
-                    name="name"
+                    name="title"
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
