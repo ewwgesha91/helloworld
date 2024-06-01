@@ -17,7 +17,7 @@ export const UserProvider = ({children}) => {
 
     const [user, setUser] = useState(getUserFromLS);
 
-    const loginUser = (newUser) => {
+    const isLoginUser = (newUser) => {
         setUser(newUser);
         navigate(paths.MAIN);
     };
@@ -36,7 +36,7 @@ export const UserProvider = ({children}) => {
     }, [user]);
 
     return (
-        <UserContext.Provider value={{ user, loginUser, logoutUser }}>
+        <UserContext.Provider value={{ user, isLoginUser, logoutUser }}>
             {children}
         </UserContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { cardList, statusList } from "../../data";
+/* import { cardList, statusList } from "../../data"; */
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Main from "../../components/Main/Main";
@@ -12,27 +12,28 @@ import { useUser } from "../../hooks/useUser";
 export default function MainPage() {
   const {user} = useUser();
   const {setTasks} = useTasks();
-    const [cards, setCards] = useState(cardList);
+/*     const [cards, setCards] = useState([]); */
     const [isLoading, setIsLoading] = useState(true);
-/* const [error, setError] = useState(null);
- */
+const [error, setError] = useState(null);
+
     useEffect(() => {
-      try {
-        setIsLoading(true);
-        getCadrs({token: user.token})
-        .then((data) => {
-          console.log(data);
-          setTasks(data.tasks);
-        })
-      } catch (error) {
+      const onCards = async () => {
+        try {
+          setIsLoading(true);
+          const response = await getCadrs({token: user.token});
+            console.log(response);
+            setTasks(response.tasks);
+        } catch (error) {
           console.error(error);
-          /* setError("Не удалось загрузить данные, попробуйте позже."); */
+          setError("Не удалось загрузить данные, попробуйте позже.");
         } finally {
           setIsLoading(false);
         }
-      }, [setTasks, user ]);
+      };
+       onCards();
+      }, [setTasks, user.token]);
     
-      function onCardAdd() {
+/*       function onCardAdd() {
         const newCard = {
           id: cards.length + 1,
           topic: "Web Design",
@@ -41,14 +42,15 @@ export default function MainPage() {
           status: statusList[0],
         };
         setCards([...cards, newCard]);
-      }
+      } */
 
       return (
         <>
           <Wrapper>
 {/*             <PopNewCard /> */}
-            <Header onCardAdd={onCardAdd} />
-            {isLoading ? <Loader>Данные загружаются...</Loader> : <Main cards={cards}  />}
+            <Header /* onCardAdd={onCardAdd} */ />
+            {isLoading ? <Loader>Данные загружаются...</Loader> : <Main /* cards={cards} */  />}
+            {error && <span style={{ color: "red" }}>Случилась ошибка</span>}
             <Outlet />
           </Wrapper>
           <script src="js/script.js"></script>
