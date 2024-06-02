@@ -5,4 +5,5 @@ export const paths = {
     REGISTER: "/register",
     USER_EXIT: "/exit",
     NOTFOUND: "*",
+    NEWCARD: "/newcard",
   };

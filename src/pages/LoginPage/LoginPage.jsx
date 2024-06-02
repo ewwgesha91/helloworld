@@ -1,10 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, /* useNavigate */ } from "react-router-dom";
 import { paths } from "../../lib/paths";
 import * as S from "../RegistrationPage/RegistrationPage.styled";
 import { loginUser } from "../../api";
 import { useState } from "react";
-export default function LoginPage({ setUser }) {
-  const navigate = useNavigate();
+import { useUser } from "../../hooks/useUser";
+export default function LoginPage() {
+/*   let navigate = useNavigate(); */
+  const {isLoginUser} = useUser();
 
   const loginForm = {
     login: "",
@@ -28,11 +30,10 @@ export default function LoginPage({ setUser }) {
     }
 
     try {
-      await loginUser(loginData).then((data) => {
+      const data = await loginUser(loginData);
         console.log(data);
-        setUser(data.user);
-        navigate(paths.MAIN);
-      });
+        isLoginUser(data.user);
+/*         navigate(paths.MAIN); */
     } catch (error) {
       console.log(error);
       setAddLoginError(error.message);

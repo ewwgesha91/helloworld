@@ -1,14 +1,24 @@
 import { useState } from "react";
 import * as S from "./Header.styled";
 import { Container } from "../../styled/Common.styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { paths } from "../../lib/paths";
+import { useUser } from "../../hooks/useUser";
 
-export default function Header({ onCardAdd }) {
+export default function Header() {
+  const {user} = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    setIsOpen((prevState) => !prevState);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  }
+
+  const navigate = useNavigate();
+
+  const handleExit = () => {
+    navigate(paths.USER_EXIT);
   };
+
   return (
     <S.Header>
       <Container>
@@ -19,36 +29,27 @@ export default function Header({ onCardAdd }) {
             </Link>
           </S.HeaderLogo>
           <S.HeaderLogo>
-            <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
-            </a>
+            <Link to={paths.MAIN} target="_self">
+            <img src="images/logo_dark.png" alt="logo" />
+            </Link>
           </S.HeaderLogo>
           <S.HeaderNav>
-            <S.HeaderBtnMainNew onClick={onCardAdd} id="btnMainNew">
-              <S.HeaderBtnMainNewLink href="#">
-                Создать новую задачу
-              </S.HeaderBtnMainNewLink>
+            <S.HeaderBtnMainNew id="btnMainNew">
+            <Link to={paths.NEWCARD}><S.HeaderBtnMainNewLink>Создать новую задачу</S.HeaderBtnMainNewLink></Link>
             </S.HeaderBtnMainNew>
-            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
-              Ivan Ivanov
-            </S.HeaderUser>
+            <S.HeaderUser onClick={handleClick} href="#">{user.name}</S.HeaderUser>
             {isOpen && (
-              <div
-                className="header__pop-user-set pop-user-set"
-                id="user-set-target"
-              >
-                <p className="pop-user-set__name">Ivan Ivanov</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+              <S.HeaderPopUserSet id="user-set-target">
+                <p className="pop-user-set__name">{user.name}</p>
+                <p className="pop-user-set__mail">{user.login}</p>
                 <div className="pop-user-set__theme">
                   <p>Темная тема</p>
                   <input type="checkbox" className="checkbox" name="checkbox" />
                 </div>
-                <Link to={paths.USER_EXIT}>
-                  <button type="button" className="_hover03">
+                  <button onClick={handleExit} type="button" className="_hover03">
                     Выйти
                   </button>
-                </Link>
-              </div>
+              </S.HeaderPopUserSet>
             )}
           </S.HeaderNav>
         </S.HeaderBlock>
